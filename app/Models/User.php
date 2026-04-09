@@ -15,7 +15,7 @@ use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\ShippingAddress;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'phone', 'role', 'address'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {

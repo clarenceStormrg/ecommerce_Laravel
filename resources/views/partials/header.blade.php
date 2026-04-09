@@ -64,70 +64,10 @@
                                         <i class="iconly-Search icli"></i>
                                     </button>
                                 </div>
-                                <div class="location-box-2">
-                                    <button class="btn location-button" data-bs-toggle="modal"
-                                        data-bs-target="#locationModal">
-                                        <i class="iconly-Location icli"></i>
-                                        <span class="locat-name">Your Location</span>
-                                        <i class="fa-solid fa-angle-down down-arrow"></i>
-                                    </button>
-                                </div>
                             </div>
                         </div>
 
                         <div class="rightside-menu">
-                            <div class="dropdown-dollar">
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown">
-                                        <span>Language</span> <i class="fa-solid fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a id="eng" class="dropdown-item"
-                                                href="javascript:void(0)">English</a>
-                                        </li>
-                                        <li>
-                                            <a id="hin" class="dropdown-item" href="javascript:void(0)">Hindi</a>
-                                        </li>
-                                        <li>
-                                            <a id="guj" class="dropdown-item"
-                                                href="javascript:void(0)">Gujarati</a>
-                                        </li>
-                                        <li>
-                                            <a id="arb" class="dropdown-item" href="javascript:void(0)">Arabic</a>
-                                        </li>
-                                        <li>
-                                            <a id="rus" class="dropdown-item" href="javascript:void(0)">Russia</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="javascript:void(0)">Chinese</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle m-0" type="button" id="dropdownMenuButton2"
-                                        data-bs-toggle="dropdown">
-                                        <span>Dollar</span> <i class="fa-solid fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a id="usd" class="dropdown-item" href="javascript:void(0)">USD</a>
-                                        </li>
-                                        <li>
-                                            <a id="inr" class="dropdown-item" href="javascript:void(0)">INR</a>
-                                        </li>
-                                        <li>
-                                            <a id="eur" class="dropdown-item" href="javascript:void(0)">EUR</a>
-                                        </li>
-                                        <li>
-                                            <a id="aud" class="dropdown-item" href="javascript:void(0)">AUD</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
                             <div class="option-list">
                                 <ul>
                                     <li>
@@ -139,13 +79,6 @@
                                     <li>
                                         <a href="javascript:void(0)" class="header-icon search-box search-icon">
                                             <i class="iconly-Search icli"></i>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="compare.html" class="header-icon">
-                                            <small class="badge-number">2</small>
-                                            <i class="iconly-Swap icli"></i>
                                         </a>
                                     </li>
 
@@ -217,31 +150,69 @@
                                             </div>
                                         </div>
                                     </li>
+
+                                    <li class="right-side onhover-dropdown">
+                                        <div class="delivery-login-box d-flex align-items-center gap-2">
+                                            <div class="delivery-icon">
+                                                <i data-feather="user"></i>
+                                            </div>
+
+                                            <div class="delivery-detail">
+                                                @auth
+                                                    <h6>Hello,</h6>
+                                                    <h5>{{ Auth::user()->name }}</h5>
+                                                @endauth
+
+                                                @guest
+                                                    <h6>Hello,</h6>
+                                                    <h5>My Account</h5>
+                                                @endguest
+                                            </div>
+                                        </div>
+
+                                        <div class="onhover-div onhover-div-login">
+                                            <ul class="user-box-name">
+
+                                                @guest
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ route('login') }}">Log In</a>
+                                                    </li>
+
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ route('register') }}">Register</a>
+                                                    </li>
+
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ route('password.request') }}">Forgot Password</a>
+                                                    </li>
+                                                @endguest
+
+
+                                                @auth
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ route('profile.edit') }}">My Profile</a>
+                                                    </li>
+
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ url('/orders') }}">My Orders</a>
+                                                    </li>
+
+                                                    <li class="product-box-contain">
+                                                        <form method="POST" action="{{ route('logout') }}">
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="bg-transparent border-0 p-0 text-start w-100">
+                                                                Log Out
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                @endauth
+                                            </ul>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="main-nav">
-                    <div class="right-nav">
-                        <div class="nav-number">
-                            <img src="../assets/images/icon/music.png" class="img-fluid blur-up lazyload"
-                                alt="">
-                            <span>(123) 456 7890</span>
-                        </div>
-                        <a href="javascript:void(0)" class="btn theme-bg-color ms-3 fire-button"
-                            data-bs-toggle="modal" data-bs-target="#deal-box">
-                            <div class="fire">
-                                <img src="../assets/images/icon/hot-sale.png" class="img-fluid" alt="">
-                            </div>
-                            <span>Hot Deals</span>
-                        </a>
                     </div>
                 </div>
             </div>
