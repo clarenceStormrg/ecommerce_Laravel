@@ -39,8 +39,9 @@
                                 <i class="iconly-Category icli theme-color"></i>
                             </span>
                         </button>
-                        <a href="index.html" class="web-logo nav-logo">
-                            <img src="../assets/images/logo/3.png" class="img-fluid blur-up lazyload" alt="">
+                        <a href="{{ route('home') }}" class="web-logo nav-logo">
+                            <img src="{{ asset('assets/images/logo/3.png') }}" class="img-fluid blur-up lazyload"
+                                alt="Fastkart">
                         </a>
 
                         <div class="search-full">

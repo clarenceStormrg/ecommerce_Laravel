@@ -1,19 +1,18 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Order;
+use App\Models\Review;
+use App\Models\ShippingAddress;
+use App\Models\Wishlist;
+use App\Notifications\CustomResetPasswordNotification;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-use App\Models\Order;
-use App\Models\Wishlist;
-use App\Models\Review;
-use App\Models\ShippingAddress;
 
 #[Fillable(['name', 'email', 'password', 'phone', 'role', 'address'])]
 #[Hidden(['password', 'remember_token'])]
@@ -31,11 +30,9 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
-
-
 
     public function orders()
     {
@@ -55,5 +52,10 @@ class User extends Authenticatable
     public function shippingAddresses()
     {
         return $this->hasMany(ShippingAddress::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
     }
 }
