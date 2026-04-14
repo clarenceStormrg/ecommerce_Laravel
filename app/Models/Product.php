@@ -12,6 +12,7 @@ class Product extends Model
         'slug',
         'description',
         'price',
+        'discount_price',
         'stock',
         'image',
         'status',
@@ -45,5 +46,10 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function finalPrice()
+    {
+        return $this->discount_price ?? $this->price;
     }
 }

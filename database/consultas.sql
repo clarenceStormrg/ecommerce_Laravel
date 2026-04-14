@@ -10,3 +10,6 @@ SELECT * FROM payments;
 SELECT * FROM wishlists;
 SELECT * FROM reviews;
 SELECT * FROM shipping_addresses;
+
+
+UPDATE products SET discount_price = price * 0.80 WHERE id <= 50;
