@@ -719,30 +719,40 @@ $('.slider-6').slick({
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 1,
+
+    rows: 2,
+    slidesPerRow: 1,
+
     responsive: [{
         breakpoint: 1560,
         settings: {
-            slidesToShow: 5,
-            autoplay: true,
-            autoplaySpeed: 3500,
+            slidesToShow: 6,
+            rows: 2,
+            slidesPerRow: 1,
         }
     },
     {
         breakpoint: 1270,
         settings: {
             slidesToShow: 4,
+            rows: 2,
+            slidesPerRow: 1,
         }
     },
     {
         breakpoint: 1010,
         settings: {
             slidesToShow: 3,
+            rows: 2,
+            slidesPerRow: 1,
         }
     },
     {
         breakpoint: 730,
         settings: {
             slidesToShow: 2,
+            rows: 2,
+            slidesPerRow: 1,
         }
     },
     ]

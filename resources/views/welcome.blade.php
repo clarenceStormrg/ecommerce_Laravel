@@ -48,7 +48,12 @@
 
                                     {{-- Wishlist --}}
                                     <button type="button" class="btn p-0 wishlist btn-wishlist notifi-wishlist"
-                                        onclick="addToWishlist({{ $product->id }})">
+                                        onclick="toggleWishlist(
+                                        {{ $product->id }},
+                                         {{ $product->discount_price ?? $product->price }},
+                                          '{{ asset('storage/' . $product->image) }}',
+                                          '{{ url('/product/' . $product->id) }}'
+                                          )">
                                         <i class="iconly-Heart icli"></i>
                                     </button>
                                 </div>
@@ -95,21 +100,27 @@
                                 <div class="price-qty">
                                     <div class="counter-number">
                                         <div class="counter">
-                                            <div class="qty-left-minus" onclick="changeQty({{ $product->id }}, -1)">
+                                            <div class="qty-left-minus">
                                                 <i class="fa-solid fa-minus"></i>
                                             </div>
 
                                             <input class="form-control input-number qty-input" id="qty-{{ $product->id }}"
                                                 type="text" value="1" readonly>
 
-                                            <div class="qty-right-plus" onclick="changeQty({{ $product->id }}, 1)">
+                                            <div class="qty-right-plus">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                     </div>
 
                                     <button type="button" class="buy-button buy-button-2 btn btn-cart"
-                                        onclick="addToCart({{ $product->id }})">
+                                        onclick="addToCart(
+                                        {{ $product->id }},
+                                         document.getElementById('qty-{{ $product->id }}').value,
+                                         {{ $product->discount_price ?? $product->price }},
+                                          '{{ asset('storage/' . $product->image) }}',
+                                          '{{ url('/product/' . $product->id) }}'
+                                          )">
                                         <i class="iconly-Buy icli text-white m-0"></i>
                                     </button>
                                 </div>
@@ -121,51 +132,6 @@
         </div>
     </section>
     <!-- Product Section End -->
-
-    <script>
-        function changeQty(productId, change) {
-            let input = document.getElementById('qty-' + productId);
-            let current = parseInt(input.value) || 1;
-            let newValue = current + change;
-
-            if (newValue < 1) newValue = 1;
-
-            input.value = newValue;
-        }
-
-        function addToCart(productId) {
-            let qty = parseInt(document.getElementById('qty-' + productId).value) || 1;
-
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-            let existing = cart.find(item => item.product_id === productId);
-
-            if (existing) {
-                existing.quantity += qty;
-            } else {
-                cart.push({
-                    product_id: productId,
-                    quantity: qty
-                });
-            }
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            console.log("Producto agregado al carrito");
-        }
-
-        function addToWishlist(productId) {
-            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-            if (!wishlist.includes(productId)) {
-                wishlist.push(productId);
-            }
-
-            localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-            console.log("Producto agregado a favoritos");
-        }
-    </script>
 
     <!-- Newsletter Section Start -->
     @include('partials.news')
