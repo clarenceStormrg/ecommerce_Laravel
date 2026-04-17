@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -62,5 +61,20 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function quickView($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return response()->json([
+            'id'             => $product->id,
+            'name'           => $product->name,
+            'description'    => $product->description,
+            'price'          => $product->price,
+            'discount_price' => $product->discount_price,
+            'image'          => asset('storage/' . $product->image),
+            'url'            => url('/product/' . $product->id),
+        ]);
     }
 }

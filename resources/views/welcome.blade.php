@@ -65,7 +65,9 @@
 
                                 <ul class="option">
                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Vista rápida">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                        <a href="{{ url('/' . $product->id . '/' . $product->slug) }}"
+                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                            onclick="event.preventDefault(); openQuickView({{ $product->id }})">
                                             <i class="iconly-Show icli"></i>
                                         </a>
                                     </li>
@@ -136,4 +138,20 @@
     <!-- Newsletter Section Start -->
     @include('partials.news')
     <!-- Newsletter Section End -->
+
+    <div class="modal fade theme-modal view-modal" id="quickViewModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header p-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="quickViewContent" class="text-center p-5">
+                        <h5>Cargando producto...</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

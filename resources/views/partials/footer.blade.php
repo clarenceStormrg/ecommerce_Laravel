@@ -1,6 +1,59 @@
 <footer class="section-t-space footer-section-2">
     <div class="container-fluid-lg">
         <div class="main-footer">
+            <div class="service-section">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="service-contain">
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="{{ asset('assets/svg/product.svg') }}" class="blur-up lazyload"
+                                        alt="Productos frescos">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Productos frescos</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="{{ asset('assets/svg/delivery.svg') }}" class="blur-up lazyload"
+                                        alt="Envío gratis">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Envío gratis desde S/ 50</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="{{ asset('assets/svg/discount.svg') }}" class="blur-up lazyload"
+                                        alt="Descuentos diarios">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Descuentos diarios</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="{{ asset('assets/svg/market.svg') }}" class="blur-up lazyload"
+                                        alt="Mejor precio">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Mejor precio garantizado</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row g-md-4 gy-sm-5 gy-2">
                 <div class="col-xxl-3 col-xl-4 col-sm-6">
                     <a href="{{ route('home') }}" class="foot-logo">

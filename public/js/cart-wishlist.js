@@ -121,6 +121,39 @@ function changeQty(productId, change) {
 }
 
 // --------------------------
+// QUICK VIEW
+// --------------------------
+function openQuickView(productId) {
+
+    let container = document.getElementById("quickViewContent");
+    container.innerHTML = "<h5>Cargando producto...</h5>";
+
+    fetch(`/quick-view/${productId}`)
+        .then(res => res.json())
+        .then(product => {
+
+            container.innerHTML = `
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                        <img src="${product.image}" class="img-fluid" alt="${product.name}">
+                    </div>
+                    <div class="col-md-7 text-start">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <h4 class="theme-color">S/ ${product.discount_price ?? product.price}</h4>
+                        <a href="${product.url}" class="btn theme-bg-color view-button icon text-white fw-bold btn-md mt-3">
+                            Ver producto completo
+                        </a>
+                    </div>
+                </div>
+            `;
+        })
+        .catch(() => {
+            container.innerHTML = "<h5>Error cargando el producto</h5>";
+        });
+}
+
+// --------------------------
 // INIT
 // --------------------------
 console.log("📦 Cart cargado:", getCart());
