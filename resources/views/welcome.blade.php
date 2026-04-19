@@ -47,13 +47,10 @@
                                     @endif
 
                                     {{-- Wishlist --}}
-                                    <button type="button" class="btn p-0 wishlist btn-wishlist notifi-wishlist"
-                                        onclick="toggleWishlist(
-                                        {{ $product->id }},
-                                         {{ $product->discount_price ?? $product->price }},
-                                          '{{ asset('storage/' . $product->image) }}',
-                                          '{{ url('/product/' . $product->id) }}'
-                                          )">
+                                    <button type="button"
+                                        class="btn p-0 wishlist btn-wishlist notifi-wishlist wishlist-btn
+                                        {{ in_array($product->id, $wishlistProductIds) ? 'active' : '' }}"
+                                        data-product-id="{{ $product->id }}">
                                         <i class="iconly-Heart icli"></i>
                                     </button>
                                 </div>
@@ -154,4 +151,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                button.addEventListener('click', function() {
+
+                    // Cambia el estado visual
+                    this.classList.toggle('active');
+
+                    // (Opcional) obtener ID del producto
+                    let productId = this.dataset.productId;
+
+                    console.log("Producto:", productId);
+                });
+            });
+        });
+    </script>
 @endsection

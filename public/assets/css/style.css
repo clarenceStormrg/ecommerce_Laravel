@@ -12114,6 +12114,11 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-left: unset;
     margin-right: auto;
 }
+
+.label-flex form {
+    margin-left: auto;
+}
+
 .blur-up {
     -webkit-filter: blur(5px);
     filter: blur(5px);
@@ -44610,6 +44615,28 @@ body.rtl .question-answer li .question-box .link-dislike-box {
         display: flex;
     }
 }
+.wishlist-btn i {
+    transition: 0.3s;
+}
+
+/* Estado activo (guardado) */
+.wishlist-btn.active i {
+    color: red;
+}
+
+/* Opcional: efecto */
+.wishlist-btn.active i {
+    transform: scale(1.2);
+}
+
+/*para la vista show*/
+.wishlist-btn.active svg {
+    color: red !important;
+    stroke: red !important;
+    fill: red !important;
+    transform: scale(1.2);
+}
+
 @media (max-width: 575px) {
     .sticky-bottom-cart .add-btn a + a {
         margin-left: 8px;
@@ -46431,3 +46458,45 @@ body.rtl
     padding-right: 0;
 }
 /*# sourceMappingURL=style.css.map */
+
+/* ===== PAGINATION THEME STYLE ===== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pagination .page-item .page-link {
+    border: none;
+    background: #f5f5f5;
+    color: #222;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* Hover */
+.pagination .page-item .page-link:hover {
+    background: #0da487; /* tu theme color */
+    color: #fff;
+}
+
+/* Activo */
+.pagination .page-item.active .page-link {
+    background: #0da487; /* tu theme color */
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Disabled */
+.pagination .page-item.disabled .page-link {
+    background: #eaeaea;
+    color: #999;
+}
+
+/* Flechas pequeñas */
+.pagination .page-link svg {
+    width: 14px;
+    height: 14px;
+}

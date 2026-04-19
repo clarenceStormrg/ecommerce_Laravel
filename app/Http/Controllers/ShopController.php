@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
@@ -20,7 +19,7 @@ class ShopController extends Controller
             ->get();
 
         // ===== REVIEWS =====
-        $hasBought = false;
+        $hasBought  = false;
         $userReview = null;
 
         if (Auth::check()) {
@@ -42,8 +41,16 @@ class ShopController extends Controller
             ->latest()
             ->get();
 
-        $totalReviews = $reviews->count();
+        $totalReviews  = $reviews->count();
         $averageRating = $totalReviews > 0 ? round($reviews->avg('rating'), 2) : 0;
+
+        $wishlistProductIds = [];
+
+        if (Auth::check()) {
+            $wishlistProductIds = \App\Models\Wishlist::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
 
         return view('product.show', compact(
             'product',
@@ -52,7 +59,8 @@ class ShopController extends Controller
             'userReview',
             'reviews',
             'totalReviews',
-            'averageRating'
+            'averageRating',
+            'wishlistProductIds'
         ));
     }
 }

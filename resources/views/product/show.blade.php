@@ -149,14 +149,13 @@
                                 {{-- WISHLIST --}}
                                 <div class="buy-box">
                                     <a href="javascript:void(0)"
-                                        onclick="toggleWishlist(
-                                            {{ $product->id }},
-                                            {{ $product->discount_price ?? $product->price }},
-                                            '{{ asset('storage/' . $product->image) }}',
-                                            '{{ url('/product/' . $product->id) }}'
-                                        )">
+                                        class="wishlist-btn {{ in_array($product->id, $wishlistProductIds ?? []) ? 'active' : '' }}"
+                                        data-product-id="{{ $product->id }}">
+
                                         <i data-feather="heart"></i>
-                                        <span>Add To Wishlist</span>
+                                        <span class="wishlist-text">
+                                            {{ in_array($product->id, $wishlistProductIds ?? []) ? 'Quitar de favoritos' : 'Agregar a favoritos' }}
+                                        </span>
                                     </a>
                                 </div>
 
@@ -530,13 +529,10 @@
                                     @endif
 
                                     {{-- Wishlist --}}
-                                    <button type="button" class="btn p-0 wishlist btn-wishlist notifi-wishlist"
-                                        onclick="toggleWishlist(
-                                    {{ $item->id }},
-                                    {{ $item->discount_price ?? $item->price }},
-                                    '{{ asset('storage/' . $item->image) }}',
-                                    '{{ url('/product/' . $item->id) }}'
-                                )">
+                                    <button type="button"
+                                        class="btn p-0 wishlist btn-wishlist notifi-wishlist wishlist-btn
+                                        {{ Auth::check() && in_array($item->id, $wishlistProductIds ?? []) ? 'active' : '' }}"
+                                        data-product-id="{{ $item->id }}">
                                         <i class="iconly-Heart icli"></i>
                                     </button>
                                 </div>
@@ -642,4 +638,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

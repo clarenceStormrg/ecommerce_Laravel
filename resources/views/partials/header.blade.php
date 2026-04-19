@@ -84,7 +84,7 @@
                                     </li>
 
                                     <li class="onhover-dropdown">
-                                        <a href="javascript:void(0)" class="header-icon swap-icon">
+                                        <a href="{{ route('wishlist.index') }}" class="header-icon swap-icon">
                                             <i class="iconly-Heart icli"></i>
                                         </a>
 
